@@ -1,0 +1,3 @@
+# ActivityScheduler
+Schedule Activities given a list of activities and their duration. Useful to dayouts, nighouts, pub crawls, stag dos etc...
+ Schedule Activities given a list of activities and their duration. Useful to dayouts, nighouts, pub crawls, stag dos etc... — 
