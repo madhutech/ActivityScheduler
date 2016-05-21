@@ -5,3 +5,4 @@ Organise your activities . Simply upload a csv file of activities (and their dur
 - Activities will be arrange as close to each other as possible. 
 - Minimal (or no gap) between activities.
 - (Excess) Activities in the input file can be carried over to a new Team or to a different day. 
+- fsdsd
