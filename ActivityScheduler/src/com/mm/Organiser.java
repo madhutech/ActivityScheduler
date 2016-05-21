@@ -224,8 +224,8 @@ public class Organiser {
 		System.out.println("	SCHEDULE:");
 		sbldr.append("\n").append("SCHEDULE:");
 		while(inputMap.size()>0){
-			System.out.println("		Team "+count);
-			sbldr.append("\n").append("	Team"+count);
+			System.out.println("		Team/Day "+count);
+			sbldr.append("\n").append("	Team/Day"+count);
 			schedule=schedule2(inputMap,hasLUNCH_BREAK);
 			//System.out.println("OUTPUT:"+schedule);
 			System.out.println("		==============");
