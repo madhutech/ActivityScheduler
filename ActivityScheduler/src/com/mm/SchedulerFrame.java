@@ -65,7 +65,6 @@ public class SchedulerFrame extends JFrame implements ActionListener{
 		taOutput.setWrapStyleWord(true);
 		taOutput.setLineWrap(true);
 		JScrollPane scrollPane = new JScrollPane(taOutput);
-	//	taOutput.setEditable(false);
 
 		pnlSouth.add(scrollPane); 
 
