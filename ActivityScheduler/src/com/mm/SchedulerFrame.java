@@ -65,7 +65,8 @@ public class SchedulerFrame extends JFrame implements ActionListener{
 		taOutput.setWrapStyleWord(true);
 		taOutput.setLineWrap(true);
 		JScrollPane scrollPane = new JScrollPane(taOutput);
-		
+	//	taOutput.setEditable(false);
+
 		pnlSouth.add(scrollPane); 
 
 		//add upper panel to frame
@@ -103,6 +104,7 @@ public void actionPerformed(ActionEvent e) {
                 File file = jfc.getSelectedFile();
                 //This is where a real application would open the file.
                 taOutput.setText(o.scheduler(file));
+                taOutput.setEditable(false);
             } else {
                 System.out.println("Open command cancelled by user.");
             }
