@@ -116,6 +116,8 @@ public void actionPerformed(ActionEvent e) {
 	}
 
 	static public void main(String[] a){
-		new SchedulerFrame();
+		SwingUtilities.invokeLater(() -> {
+				new SchedulerFrame();
+		});
 	}
 }
