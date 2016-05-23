@@ -6,3 +6,4 @@ Organise your activities . Simply upload a csv file of activities (and their dur
 - Minimal (or no gap) between activities.
 - (Excess) Activities in the input file can be carried over to a new Team or to a different day. 
 - Confugure your own start times, end times, lunch/break times
+- Needs java 1.8
