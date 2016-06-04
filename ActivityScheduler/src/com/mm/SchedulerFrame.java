@@ -17,6 +17,10 @@ public class SchedulerFrame extends JFrame implements ActionListener{
 	JTextField txtStartMin ;
 	JLabel lblLunchStartHour ;; 
 	JTextField txtLunchStartTime ;
+	JLabel lblPrelunchActivityGap;
+	JTextField txtPrelunchActivityGap;
+	JLabel lblPostLunchActivityGap;
+	JTextField txtPostlunchActivityGap;
 	JLabel lblStagMotivationStartHour ; 
 	JTextField txtStagMotivStartHour ;
 	JFileChooser jfc ;
@@ -41,13 +45,17 @@ public class SchedulerFrame extends JFrame implements ActionListener{
 		pnlNorth = new JPanel();
 
 		lblStartHour = new JLabel("Start Hour:"); 
-		txtStartHour = new JTextField(4);
+		txtStartHour = new JTextField(2);
 		lblStartMin = new JLabel("Start Minute:"); 
-		txtStartMin = new JTextField(4);
+		txtStartMin = new JTextField(2);
 		 lblLunchStartHour = new JLabel("Lunch Start Time:"); 
-		 txtLunchStartTime = new JTextField(4);
+		 txtLunchStartTime = new JTextField(2);
+		 lblPrelunchActivityGap = new JLabel("Gap1:");
+		 lblPostLunchActivityGap = new JLabel("Gap2.");
+		 txtPrelunchActivityGap = new JTextField(2); txtPrelunchActivityGap.setEditable(false);
+		 txtPostlunchActivityGap = new JTextField(2);txtPostlunchActivityGap.setEditable(false);
 		lblStagMotivationStartHour = new JLabel("Stag Motivation Start Time:"); 
-		 txtStagMotivStartHour = new JTextField(4);
+		 txtStagMotivStartHour = new JTextField(2);
 		 jfc = new JFileChooser();
 		 btnOpenFile  = new JButton("Upload a file...");
 		 btnOpenFile.addActionListener(this);
@@ -56,6 +64,8 @@ public class SchedulerFrame extends JFrame implements ActionListener{
 		pnlNorth.add(lblStartMin);pnlNorth.add(txtStartMin);
 		pnlNorth.add(lblLunchStartHour); pnlNorth.add(txtLunchStartTime);
 		pnlNorth.add(lblStagMotivationStartHour); pnlNorth.add(txtStagMotivStartHour);
+		pnlNorth.add(lblPrelunchActivityGap);pnlNorth.add(txtPrelunchActivityGap);
+		pnlNorth.add(lblPostLunchActivityGap);pnlNorth.add(txtPostlunchActivityGap);
 		pnlNorth.add(btnOpenFile);
 
 
@@ -76,7 +86,7 @@ public class SchedulerFrame extends JFrame implements ActionListener{
 		
 		this.setTitle("Organise your team's day!");
 
-		this.setSize(900, 600);
+		this.setSize(940, 600);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);;
 		this.setDefaultCloseOperation(SchedulerFrame.EXIT_ON_CLOSE);
@@ -96,6 +106,10 @@ public void actionPerformed(ActionEvent e) {
 			o.setSTART_HOUR(Integer.parseInt(txtStartHour.getText()));
 		if(txtStartMin.getText() !=null && !txtStartMin.getText().equals(""))
 			o.setSTART_MINUTE(Integer.parseInt(txtStartMin.getText()));
+		if(txtPrelunchActivityGap.getText()!=null && !txtPrelunchActivityGap.getText().equals(""))
+			o.setPRE_LUNCH_GAP(Integer.parseInt(txtPrelunchActivityGap.getText()));
+		if(txtPostlunchActivityGap.getText()!=null && !txtPostlunchActivityGap.getText().equals(""))
+			o.setPOST_LUNCH_GAP(Integer.parseInt(txtPostlunchActivityGap.getText()));
 	     //Handle open button action.
         if (e.getSource() == btnOpenFile) {
             int returnVal = jfc.showOpenDialog(SchedulerFrame.this);

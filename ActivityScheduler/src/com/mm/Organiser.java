@@ -27,6 +27,8 @@ public class Organiser {
 	private int LUNCH_START_TIME = 12;
 	private int STAG_MOTIVIATION_START_TIME=17;
 	private int SPRINT_DURATION = 15;
+	private int PRE_LUNCH_GAP = 0;
+	private int POST_LUNCH_GAP= 0;
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
 	private static  boolean hasLUNCH_BREAK = true;
 	
@@ -56,6 +58,20 @@ public class Organiser {
 	public void setSTAG_MOTIVIATION_START_TIME(int sTAG_MOTIVIATION_START_TIME) {
 		STAG_MOTIVIATION_START_TIME = sTAG_MOTIVIATION_START_TIME;
 	}
+	
+	public int getPRE_LUNCH_GAP() {
+		return PRE_LUNCH_GAP;
+	}
+	public void setPRE_LUNCH_GAP(int pRE_LUNCH_GAP) {
+		PRE_LUNCH_GAP = pRE_LUNCH_GAP;
+	}
+	public int getPOST_LUNCH_GAP() {
+		return POST_LUNCH_GAP;
+	}
+	public void setPOST_LUNCH_GAP(int pOST_LUNCH_GAP) {
+		POST_LUNCH_GAP = pOST_LUNCH_GAP;
+	}
+
 	/**
 	 * reads input file and populates an internal map.
 	 * @param file
@@ -143,7 +159,7 @@ public class Organiser {
 					for(Map.Entry<String, Integer> entry : tmp.entrySet())
 					{
 						schedule.put(time, entry.getKey());
-						time = time.plusMinutes(entry.getValue());
+						time = time.plusMinutes(entry.getValue());//+PRE_LUNCH_GAP);
 					}
 					
 					//lunch
@@ -159,7 +175,7 @@ public class Organiser {
 					for(Map.Entry<String, Integer> entry : tmp2.entrySet())
 					{
 						schedule.put(time, entry.getKey());
-						time = time.plusMinutes(entry.getValue());
+						time = time.plusMinutes(entry.getValue());//+POST_LUNCH_GAP);
 					}
 					for(Map.Entry<LocalTime, String> entry : schedule.entrySet()){
 						map.remove(entry.getValue());
@@ -179,7 +195,7 @@ public class Organiser {
 	}
 	
 	private static Map<String,Integer> findActivitiesNotExceedingGivenHours(Map<String,Integer> m,int givenHours){
-		Map<String,Integer> mapSpanningThreeHours = new HashMap<>();
+		Map<String,Integer> mapSpanningGivenHours = new HashMap<>();
 		boolean visitedMap = false;
 		int tmp = 0;
 		ArrayList<Integer> min = new ArrayList<>();
@@ -188,14 +204,14 @@ public class Organiser {
 		for(String activity : activities){
 			min.add(m.get(activity));
 			Collections.sort(min);
-			mapSpanningThreeHours.put(activity, m.get(activity));
+			mapSpanningGivenHours.put(activity, m.get(activity));
 			tmp = tmp + m.get(activity);
 			if(tmp==givenHours*60)
 				break;
 			while(tmp>(givenHours*60)){
-				for(Map.Entry<String, Integer> entry : mapSpanningThreeHours.entrySet()){
+				for(Map.Entry<String, Integer> entry : mapSpanningGivenHours.entrySet()){
 					if(min.get(0).equals(entry.getValue())){
-						mapSpanningThreeHours.remove(entry.getKey());
+						mapSpanningGivenHours.remove(entry.getKey());
 						break;
 						}
 					}
@@ -208,7 +224,7 @@ public class Organiser {
 
 		}
 		
-		return mapSpanningThreeHours;
+		return mapSpanningGivenHours;
 	}
 	
 	/**
